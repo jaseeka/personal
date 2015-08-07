@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 数据库配置文件读取 -->
+    <context:property-placeholder
+            location="classpath:/property/dataSource.properties" ignore-unresolvable="true"/>
+
+    <!-- c3p0连接池配置 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass" value="${mysql.driverClass}"/>
+        <property name="jdbcUrl" value="${mysql.jdbcUrl}"/>
+        <property name="properties">
+            <props>
+                <prop key="c3p0.acquire_increment">${c3p0.acquire_increment}</prop>
+                <prop key="c3p0.idle_test_period">${c3p0.idle_test_period}</prop>
+                <prop key="c3p0.timeout">${c3p0.timeout}</prop>
+                <prop key="c3p0.max_size">${c3p0.max_size}</prop>
+                <prop key="c3p0.max_statements">${c3p0.max_statements}</prop>
+                <prop key="c3p0.min_size">${c3p0.min_size}</prop>
+                <prop key="user">${mysql.user}</prop>
+                <prop key="password">${mysql.password}</prop>
+                <!-- 连接检查 -->
+                <!-- <prop key="c3p0.test_on_checkout">true</prop> -->
+                <!-- 断开连接 -->
+                <!-- <prop key="c3p0.max_idle_time">27000</prop> -->
+                <!--最大空闲时间,1800秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+                <prop key="c3p0.max_idle_time">1800</prop>
+                <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+                <prop key="c3p0.acquire_increment">3</prop>
+                <prop key="initialPoolSize">10</prop>
+                <!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+                <prop key="idleConnectionTestPeriod">60</prop>
+                <!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
+                <prop key="acquireRetryAttempts">30</prop>
+                <prop key="breakAfterAcquireFailure">true</prop>
+                <prop key="testConnectionOnCheckout">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- 配置SqlSessionFactoryBean -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:/config/mybatis-context.xml"/>
+        <property name="mapperLocations">
+            <list>
+                <!-- 表示在resources/mapper包或以下所有目录中，以-mapper.xml结尾所有文件 -->
+                <value>classpath:/mapper/*Mapper.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 通过扫描的模式，扫描目录，所有的Dao都继承BaseDao接口的接口， 这样一个bean就可以了 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.personal.dao"/>
+        <property name="markerInterface" value="com.common.dao.BaseDao"/>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.common.dao"/>
+    </bean>
+
+    <!-- 标准 spring 管理事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+</beans>

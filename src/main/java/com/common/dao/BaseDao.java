@@ -2,17 +2,15 @@ package com.common.dao;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import org.apache.ibatis.annotations.DeleteProvider;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.SelectKey;
-import org.apache.ibatis.annotations.UpdateProvider;
+import com.personal.entity.Item;
+import org.apache.ibatis.annotations.*;
 
- /**
- * 通用Mapper接口（使用时需继承该接口）
- * Created by jaseeka
- * date 2015/7/22
- * time 14:46
- */
+/**
+* 通用Mapper接口（使用时需继承该接口）
+* Created by jaseeka
+* date 2015/7/22
+* time 14:46
+*/
 public interface BaseDao<T extends BaseEntity> {
 
 //****************各数据库查询自增主键方法**************************
@@ -68,6 +66,14 @@ public interface BaseDao<T extends BaseEntity> {
      */
     @UpdateProvider(type = SQLTemplate.class, method = "updateNull")
     public Integer updateNull(T object);
+
+    /**
+     * 通用like多条件and查询操作获取总记录数
+     * @param object
+     * @return
+     */
+    @SelectProvider(type = SQLTemplate.class, method = "selectAndLikeCount")
+    public Integer selectAndLikeCount(T object);
 
     /**
      * 通用id查询操作

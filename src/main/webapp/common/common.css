@@ -1,0 +1,72 @@
+html, body {
+    color:#222;
+    font-family:Microsoft YaHei, Helvitica, Verdana, Tohoma, Arial, san-serif;
+    margin:0;
+    padding: 0;
+    text-decoration: none;
+}
+img { border:0; }
+
+ul {
+    list-style: none outside none;
+    margin:0;
+    padding: 0;
+}
+body {
+    background-color:#eee;
+}
+
+a{
+    text-decoration: blink;
+}
+
+div{
+    float: left;
+}
+
+header{
+    height: 40px;
+    width: 100%;
+    background-color: #00ccff;
+}
+
+header .title {
+    width: 90%;
+    text-align: center;
+    padding-top: 3px;
+}
+
+header .title span{
+    color: white;
+    font-size: x-large;
+}
+
+header .back{
+    transform: rotateY(180deg);
+    width: 10%;
+    padding-top: 2px;
+}
+
+header .back a{
+    font-size: 200%;
+    color: white;
+    float: right;
+    padding-right: 5%;
+}
+
+@font-face {font-family: 'iconfont';
+    src: url('/images/icon/iconfont.eot'); /* IE9*/
+    src: url('/images/icon/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/images/icon/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('/images/icon/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('/images/icon/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:320%;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}

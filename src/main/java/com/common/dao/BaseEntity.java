@@ -113,12 +113,14 @@ public class BaseEntity implements Serializable {
         for (String attrName : attrSet)
             if (isFirst) {
                 isFirst = false;
-                selectMapper.append(attrMap.get(attrName))
+//                selectMapper.append(attrMap.get(attrName))
+                selectMapper.append(attrName)
                         .append(" as ")
                         .append(attrName);
             } else {
                 selectMapper.append(",")
-                        .append(attrMap.get(attrName))
+//                        .append(attrMap.get(attrName))
+                        .append(attrName)
                         .append(" as ")
                         .append(attrName);
             }

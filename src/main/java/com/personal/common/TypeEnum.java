@@ -15,4 +15,12 @@ public abstract class TypeEnum {
     public enum LanguageEnum{
         CN, EN
     }
+
+    /**
+     * 任务状态
+     * 0：正常   1：已完成   2：放弃
+     */
+    public enum ItemState{
+        NORMAL, DONE, ABANDON
+    }
 }

@@ -1,0 +1,46 @@
+body .mainmenu:after {
+    clear: both;
+    content: " ";
+    display: block;
+}
+body .mainmenu li{
+    float:left;
+    margin-left: 2.5%;
+    margin-top: 5%;
+    width: 30%;
+    border-radius:10px;
+    overflow:hidden;
+}
+body .mainmenu li a{
+    display:block;
+    color:#FFF;
+    text-align:center;
+    text-decoration: blink;
+}
+body .mainmenu li a b{
+    display:block;
+    height:80px;
+    margin-top: 15px;
+}
+body .mainmenu li a .icon{
+    margin: 15px auto 15px;
+    width: 50px;
+    height: 50px;
+}
+body .mainmenu li a span{
+    display:block;
+    height:30px;
+    line-height:30px;
+    background-color:#FFF;
+    color: #999;
+    font-size:14px;
+}
+body .mainmenu li:nth-child(9n+1) {background-color:#00ccff}
+body .mainmenu li:nth-child(9n+2) {background-color:#0099FF}
+body .mainmenu li:nth-child(9n+3) {background-color:#CC00FF}
+body .mainmenu li:nth-child(9n+4) {background-color:#33FF00}
+body .mainmenu li:nth-child(9n+5) {background-color:#CCFF00}
+body .mainmenu li:nth-child(9n+6) {background-color:#FFDD00}
+body .mainmenu li:nth-child(9n+7) {background-color:#FF99CC}
+body .mainmenu li:nth-child(9n+8) {background-color:#FF3399}
+body .mainmenu li:nth-child(9n+9) {background-color:#FF0066}

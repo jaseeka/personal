@@ -299,5 +299,34 @@ public class SQLTemplate<T extends BaseEntity> {
         return SQL;
     }
 
+    /**
+     * and条件查询Lile总记录数语句生成
+     *
+     * @param object
+     * @return
+     */
+    public String selectAndLikeCount(T object) {
+        // 获取属性名集合
+        Set<String> attrSet = object.gainAttributesNameSet();
+//        Map<String, String> attrMap = object.gainAttributesToDatabaseMap();
 
+        BEGIN();
+        SELECT("count(*)");
+        FROM(object.gainTableName());
+        for (String attrName : attrSet) {
+            if (!object.isNull(attrName)) {
+                if (ClassUtils.getAttributeTypeStr(object, attrName).equals("String")) {
+//                    WHERE(attrMap.get(attrName) + " like CONCAT( '%',#{" + attrName + "},'%' )");
+                    WHERE(attrName + " like CONCAT( '%',#{" + attrName + "},'%' )");
+                } else {
+//                    WHERE(attrMap.get(attrName) + "=#{" + attrName + "}");
+                    WHERE(attrName + "=#{" + attrName + "}");
+                }
+            }
+        }
+        String SQL = SQL();
+        logger.debug("selectOr SQL:" + SQL);
+//        System.out.println("selectOr SQL:" + SQL);
+        return SQL;
+    }
 }

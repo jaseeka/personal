@@ -21,7 +21,6 @@ a{
 }
 
 div{
-    float: left;
 }
 
 header{
@@ -31,7 +30,8 @@ header{
 }
 
 header .title {
-    width: 90%;
+    width: 80%;
+    float: left;
     text-align: center;
     padding-top: 3px;
 }
@@ -42,12 +42,26 @@ header .title span{
 }
 
 header .back{
+    float: left;
     transform: rotateY(180deg);
     width: 10%;
     padding-top: 2px;
 }
 
 header .back a{
+    font-size: 200%;
+    color: white;
+    float: right;
+    padding-right: 5%;
+}
+
+header .rightMenu{
+    float: left;
+    width: 10%;
+    padding-top: 2px;
+}
+
+header .rightMenu a{
     font-size: 200%;
     color: white;
     float: right;
@@ -69,4 +83,130 @@ header .back a{
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.maskDiv{
+    float: left;
+    position: absolute;
+    width: 100%;
+    height: 96%;
+    background-color:rgba(95, 95, 95, 0.47);
+}
+
+.alertDiv{
+    float: left;
+    position: absolute;
+    background-color: white;
+    width: 70%;
+    height: 20%;
+    left: 15%;
+    top: 20%;
+    border-radius: 15px;
+    border:solid 1px #929292;
+}
+
+.alertMsg{
+    float: left;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 60%;
+    margin-top: 1%;
+}
+
+#content{
+    float: left;
+    width: 100%;
+}
+
+#content .item{
+    width: 100%;
+    float: left;
+    border-bottom: 1px black;
+    border-bottom: 1px #CACACA solid;
+    height: 32px;
+}
+
+#content .item .text {
+    font-size: 18px;
+    width: 53%;
+    padding: 3px 0 3px 2%;
+    float: left;
+}
+
+#content .item .time {
+    float: left;
+    font-size: 15px;
+    width: 15%;
+    padding-top: 5px;
+    /*text-align: right;*/
+}
+
+#content .item .btn {
+    float: left;
+    width: 30%;
+    cursor: pointer;
+}
+
+#content .item .btn .abandonBtn{
+    float: left;
+    background-color: #D9534F;
+    text-align: center;
+    float: left;
+    width: 50%;
+    height: 28px;
+    color: #FFFFF9;
+    padding-top: 4px;
+}
+
+#content .item .btn .doneBtn{
+    float: left;
+    background-color: #5CB85C;
+    text-align: center;
+    float: left;
+    width: 50%;
+    height: 28px;
+    color: #FFFFF9;
+    padding-top: 4px;
+}
+
+#content .item .btn .deleteBtn{
+    float: left;
+    background-color: #D9534F;
+    text-align: center;
+    float: left;
+    width: 50%;
+    height: 28px;
+    color: #FFFFF9;
+    padding-top: 4px;
+}
+
+#content .item .btn .editBtn{
+    float: left;
+    background-color: #5CB85C;
+    text-align: center;
+    float: left;
+    width: 50%;
+    height: 28px;
+    color: #FFFFF9;
+    padding-top: 4px;
+}
+
+#editDiv{
+    float: left;
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 96%;
+    background-color: white;
+}
+
+#editDiv h2{
+    text-align: center;
+}
+
+#editDiv .formDiv{
+    width: 100%;
+    float: left;
+    text-align: center;
 }

@@ -1,7 +1,9 @@
 package com.personal.controller;
 
+import com.common.utils.DateUtils;
 import com.common.utils.JsonUtils;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.personal.common.Page;
 import com.personal.common.ResultCode;
 import com.personal.common.ResultEntity;
 import com.personal.common.TypeEnum;
@@ -31,7 +33,6 @@ public class ItemController {
     /**
      * 获取事项列表
      * @param state
-     * @param model
      * @param session
      * @param request
      * @param response
@@ -40,7 +41,6 @@ public class ItemController {
     @RequestMapping(value = "getItemList", produces = "application/json;charset=UTF-8")
     public String getItemList(
             @RequestParam(value = "state")Integer state,
-            Item model,
             HttpSession session,
             HttpServletRequest request,
             HttpServletResponse response
@@ -51,7 +51,9 @@ public class ItemController {
         item.setIsDeleted(false);
         item.setState(state);
 
-        PageList<Item> itemList = itemService.getList(item, null);
+        Page page = new Page(1, Integer.MAX_VALUE-1, "time", Page.ORDER_ASC);
+
+        PageList<Item> itemList = itemService.getList(item, page);
 
         if (itemList != null && itemList.size() > 0){
             resultEntity.getData().put("list", itemList);
@@ -67,7 +69,6 @@ public class ItemController {
 
     /**
      * 完成任务
-     * @param model
      * @param itemId
      * @param session
      * @param request
@@ -76,7 +77,6 @@ public class ItemController {
      */
     @RequestMapping(value = "completeItem", produces = "application/json;charset=UTF-8")
     public String completeItem(
-            Item model,
             @RequestParam(value = "itemId")Integer itemId,
             HttpSession session,
             HttpServletRequest request,
@@ -99,7 +99,6 @@ public class ItemController {
 
     /**
      * 完成任务
-     * @param model
      * @param itemId
      * @param session
      * @param request
@@ -108,7 +107,6 @@ public class ItemController {
      */
     @RequestMapping(value = "abandonItem", produces = "application/json;charset=UTF-8")
     public String abandonItem(
-            Item model,
             @RequestParam(value = "itemId")Integer itemId,
             HttpSession session,
             HttpServletRequest request,
@@ -132,7 +130,6 @@ public class ItemController {
     /**
      * 获取任务数量
      * @param state
-     * @param model
      * @param session
      * @param request
      * @param response
@@ -141,7 +138,6 @@ public class ItemController {
     @RequestMapping(value = "getItemCount", produces = "application/json;charset=UTF-8")
     public String getItemCount(
             @RequestParam(value = "state")Integer state,
-            Item model,
             HttpSession session,
             HttpServletRequest request,
             HttpServletResponse response
@@ -161,6 +157,43 @@ public class ItemController {
         }else {
             resultEntity.setCode(ResultCode.FAILURE);
             resultEntity.setMsg(ResultCode.MFAILURE);
+        }
+
+        return JsonUtils.Object2Json(resultEntity);
+    }
+
+    /**
+     * 添加事项
+     * @param content
+     * @param time
+     * @param session
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "addItem", produces = "application/json;charset=UTF-8")
+    public String addItem(
+            @RequestParam(value = "content", required = false)String content,
+            @RequestParam(value = "time", required = false)String time,
+            HttpSession session,
+            HttpServletRequest request,
+            HttpServletResponse response
+    ){
+        ResultEntity resultEntity = new ResultEntity();
+
+        Item item = new Item();
+        item.setContent(content);
+        item.setTime(DateUtils.formateStr(time, "dd-MM-yyyy HH:mm"));
+        item.setState(TypeEnum.ItemState.NORMAL.ordinal());
+        item.setIsDeleted(false);
+
+        Boolean result = itemService.insert(item) > 0 ? true : false;
+        if (result){
+            resultEntity.setCode(ResultCode.SUCCESS);
+            resultEntity.setMsg(ResultCode.MSUCCESS);
+        }else {
+            resultEntity.setCode(ResultCode.NO_DATA);
+            resultEntity.setMsg(ResultCode.MNO_DATA);
         }
 
         return JsonUtils.Object2Json(resultEntity);

@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <link rel="stylesheet" type="text/css" href="/common/common.css" />
+<link rel="stylesheet" type="text/css" href="/js/DateTimePicker/DateTimePicker.css" />
 
 <script type="text/javascript" src="/common/common.js"></script>
 <script type="text/javascript" src="/js/jquery/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/DateTimePicker/DateTimePicker.js"></script>

@@ -23,12 +23,12 @@
   </header>
   <ul class="mainmenu">
     <li><a href="/jsp/toDoList.jsp" ><b class="iconfont">&#xe61a;</b><span>待办事项</span></a></li>
-    <li><a href="" ><b class="iconfont">&#xe624;</b><span>任务编辑</span></a></li>
+    <li><a href="/jsp/planList.jsp" ><b class="iconfont">&#xe624;</b><span>任务管理</span></a></li>
     <li><a href="" ><b class="iconfont">&#xe637;</b><span>添加任务</span></a></li>
     <li><a href="" ><b class="iconfont">&#xe600;</b><span>警示</span></a></li>
     <li><a href="" ><b class="iconfont">&#xe604;</b><span>备忘录</span></a></li>
+    <li><a href="" ><b class="iconfont">&#xe866;</b><span>定时任务执行</span></a></li>
 
-    <li><a href="" ><b class="iconfont"></b><span>待添加</span></a></li>
     <li><a href="" ><b class="iconfont"></b><span>待添加</span></a></li>
     <li><a href="" ><b class="iconfont"></b><span>待添加</span></a></li>
     <li><a href="" ><b class="iconfont"></b><span>待添加</span></a></li>

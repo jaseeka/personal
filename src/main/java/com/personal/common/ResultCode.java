@@ -14,4 +14,7 @@ public class ResultCode {
     public static Integer FAILURE = 1;
     public static String MFAILURE = "操作失败";
 
+    public static Integer NO_DATA = 2;
+    public static String MNO_DATA = "没有数据";
+
 }

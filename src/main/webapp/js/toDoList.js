@@ -14,7 +14,7 @@ function bindEvent(){
     });
 
     $("#editSubmit").click(function () {
-        $.ajax('/addItem',{
+        $.ajax('../addItem',{
             data:{
                 content : $("#itemContent").val(),
                 time    : $("input[name=time]").val()
@@ -40,7 +40,7 @@ function bindEvent(){
 
 // 获取数据
 function getItemList(state){
-    $.ajax('/getItemList',{
+    $.ajax('../getItemList',{
         data:{
             state:state
         },
@@ -90,7 +90,7 @@ function addItemDiv(data){
         var parent = $(this).parent();
         var id = parent[0].getAttribute("id") ;
         // 请求数据
-        $.ajax('/completeItem',{
+        $.ajax('../completeItem',{
             data:{
                 itemId: id
             },
@@ -123,7 +123,7 @@ function addItemDiv(data){
         var parent = $(this).parent();
         var id = parent[0].getAttribute("id") ;
         // 请求数据
-        $.ajax('/abandonItem',{
+        $.ajax('../abandonItem',{
             data:{
                 itemId: id
             },

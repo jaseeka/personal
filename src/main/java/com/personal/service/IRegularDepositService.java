@@ -2,21 +2,20 @@ package com.personal.service;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.personal.common.Page;
-import com.personal.entity.Item;
-import com.personal.entity.Plan;
+import com.personal.entity.RegularDeposit;
 
 /**
  * Created by jaseeka
- * Date 2015/10/27
- * Time 22:34
+ * Date 2015/11/16
+ * Time 8:42
  */
-public interface IPlanService {
+public interface IRegularDepositService {
     /**
      * 根据id获取
      * @param id
      * @return
      */
-    public Plan getById(Integer id);
+    public RegularDeposit getById(Integer id);
 
     /**
      * 根据id删除
@@ -30,21 +29,21 @@ public interface IPlanService {
      * @param obj
      * @return
      */
-    public Integer insert(Plan obj);
+    public Integer insert(RegularDeposit obj);
 
     /**
      * 更新
      * @param obj
      * @return
      */
-    public Boolean update(Plan obj);
+    public Boolean update(RegularDeposit obj);
 
     /**
      * 获取总记录数
      * @param obj
      * @return
      */
-    public Integer count(Plan obj);
+    public Integer count(RegularDeposit obj);
 
     /**
      * 获取列表
@@ -52,11 +51,10 @@ public interface IPlanService {
      * @param page
      * @return
      */
-    public PageList<Plan> getList(Plan obj, Page page);
+    public PageList<RegularDeposit> getList(RegularDeposit obj, Page page);
 
     /**
-     * 添加循环任务
-     * @return
+     * 添加定存金额
      */
-    Boolean addCyclePlan();
+    public boolean addCycleNum();
 }

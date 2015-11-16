@@ -43,7 +43,6 @@ header .title span{
 
 header .back{
     float: left;
-    transform: rotateY(180deg);
     width: 10%;
     padding-top: 2px;
 }
@@ -51,7 +50,7 @@ header .back{
 header .back a{
     font-size: 200%;
     color: white;
-    float: right;
+    float: left;
     padding-right: 5%;
 }
 
@@ -69,11 +68,11 @@ header .rightMenu a{
 }
 
 @font-face {font-family: 'iconfont';
-    src: url('/images/icon/iconfont.eot'); /* IE9*/
-    src: url('/images/icon/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('/images/icon/iconfont.woff') format('woff'), /* chrome、firefox */
-    url('/images/icon/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-    url('/images/icon/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+    src: url('../images/icon/iconfont.eot'); /* IE9*/
+    src: url('../images/icon/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../images/icon/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('../images/icon/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../images/icon/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont{

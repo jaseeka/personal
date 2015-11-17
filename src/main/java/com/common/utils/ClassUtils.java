@@ -1,10 +1,10 @@
 package com.common.utils;
 
+import com.common.annotation.NoColumn;
+
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 类反射用的工具类
@@ -522,23 +522,5 @@ public class ClassUtils {
 
 		return newAttr.toString();
 	}
-
-	/**
-	 * 获取数据库对应表名
-	 * @param obj
-	 * @return
-	 */
-//	public static String getDatabaseTableName(Class<?> obj){
-//		return TABLE_PREFIX+_changeAttr(getClassName(obj));
-//	}
-
-	/**
-	 * 获取数据库对应表名
-	 * @param obj
-	 * @return
-	 */
-//	public static String getDatabaseTableName(Objects obj){
-//		return getDatabaseTableName(obj.getClass());
-//	}
 
 }

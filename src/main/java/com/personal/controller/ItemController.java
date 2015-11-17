@@ -9,11 +9,11 @@ import com.personal.common.ResultEntity;
 import com.personal.common.TypeEnum;
 import com.personal.entity.Item;
 import com.personal.service.IItemService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,6 +26,7 @@ import javax.servlet.http.HttpSession;
 @RestController
 @RequestMapping("/")
 public class ItemController {
+    private static final Logger logger = Logger.getLogger(ItemController.class);
 
     @Autowired
     private IItemService itemService;
@@ -51,7 +52,7 @@ public class ItemController {
         item.setIsDeleted(false);
         item.setState(state);
 
-        Page page = new Page(1, Integer.MAX_VALUE-1, "time", Page.ORDER_ASC);
+        Page page = new Page(1, Integer.MAX_VALUE-1, "id", Page.ORDER_ASC);
 
         PageList<Item> itemList = itemService.getList(item, page);
 

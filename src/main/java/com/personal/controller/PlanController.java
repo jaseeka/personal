@@ -8,6 +8,7 @@ import com.personal.common.ResultEntity;
 import com.personal.entity.Item;
 import com.personal.entity.Plan;
 import com.personal.service.IPlanService;
+import com.personal.service.IRegularDepositService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,8 @@ public class PlanController {
 
     @Autowired
     private IPlanService planService;
+    @Autowired
+    private IRegularDepositService regularDepositService;
 
     /**
      * 获取计划列表
@@ -153,6 +156,8 @@ public class PlanController {
         ResultEntity resultEntity = new ResultEntity();
 
         Boolean result = planService.addCyclePlan();
+        regularDepositService.addCycleNum();
+
 
         if (result){
             resultEntity.setCode(ResultCode.SUCCESS);

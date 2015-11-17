@@ -1,11 +1,12 @@
 package com.personal.entity;
 
+import com.common.annotation.NoColumn;
 import com.common.dao.BaseEntity;
 
 import java.util.Date;
 
 /**
- * ÊÂÏî
+ * äº‹é¡¹
  * Created by jaseeka
  * Date 2015/8/16
  * Time 21:46

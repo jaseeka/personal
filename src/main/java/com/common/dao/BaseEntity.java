@@ -2,10 +2,14 @@ package com.common.dao;
 
 
 
+import com.common.annotation.NoColumn;
 import com.common.utils.ClassUtils;
 
 import java.io.Serializable;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -94,7 +98,35 @@ public class BaseEntity implements Serializable {
      * @return
      */
     public Set<String> gainAttributesNameSet() {
-        return ClassUtils.getAttributesName(this.getClass());
+        // 存储属性集合
+        Set<String> set = new HashSet<String>();
+        // 获取本类属性
+        Field[] fields = this.getClass().getDeclaredFields();
+        // 循环添加属性
+        for (Field field : fields) {
+            if (!isNoColumnAnnotation(field)) {
+                String name = field.getName();
+                set.add(name);
+            }
+        }
+        return set;
+//        return ClassUtils.getAttributesName(this.getClass());
+    }
+
+    /**
+     * 查看属性是否有相应的注解
+     * @param field
+     * @return
+     */
+    public static Boolean isNoColumnAnnotation(Field field){
+
+        Annotation annotation = field.getAnnotation(NoColumn.class);
+
+        if (annotation == null){
+            return false;
+        }else {
+            return true;
+        }
     }
 
     /**

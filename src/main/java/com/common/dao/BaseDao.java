@@ -2,7 +2,6 @@ package com.common.dao;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.personal.entity.Item;
 import org.apache.ibatis.annotations.*;
 
 /**

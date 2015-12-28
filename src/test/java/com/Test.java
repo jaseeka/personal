@@ -1,6 +1,8 @@
 package com;
 
+import com.common.utils.ClassUtils;
 import com.common.utils.JsonUtils;
+import com.personal.entity.Plan;
 import sun.text.normalizer.UBiDiProps;
 
 import java.util.*;
@@ -68,48 +70,50 @@ public class Test {
 
     public static void main(String [] args) {
 
-        int [] array = new int[100000];
+//        int [] array = new int[100000];
+//
+//        for (int i=0; i<100000; i++){
+//            array[i] = new Random().nextInt();
+//        }
+//
+//        System.out.println(JsonUtils.Object2Json(array));
+//
+//        Date start = new Date();
+//
+//        checkFor(array);
+//
+//        Date end = new Date();
+//
+//        System.out.println("checkFor time:" + (end.getTime() - start.getTime()));
+//
+//
+//        Date start1 = new Date();
+//
+//        checkSet(array);
+//
+//        Date end1 = new Date();
+//
+//        System.out.println("checkSet time:" + (end1.getTime() - start1.getTime()));
+//
+//
+//        Date start2 = new Date();
+//
+//        checkMap(array);
+//
+//        Date end2 = new Date();
+//
+//        System.out.println("checkMaps time:" + (end2.getTime() - start2.getTime()));
+//
+//        Date start3 = new Date();
+//
+//        checkSort(array);
+//
+//        Date end3 = new Date();
+//
+//        System.out.println("checkSort time:" + (end3.getTime() - start3.getTime()));
 
-        for (int i=0; i<100000; i++){
-            array[i] = new Random().nextInt();
-        }
 
-        System.out.println(JsonUtils.Object2Json(array));
-
-        Date start = new Date();
-
-        checkFor(array);
-
-        Date end = new Date();
-
-        System.out.println("checkFor time:" + (end.getTime() - start.getTime()));
-
-
-        Date start1 = new Date();
-
-        checkSet(array);
-
-        Date end1 = new Date();
-
-        System.out.println("checkSet time:" + (end1.getTime() - start1.getTime()));
-
-
-        Date start2 = new Date();
-
-        checkMap(array);
-
-        Date end2 = new Date();
-
-        System.out.println("checkMaps time:" + (end2.getTime() - start2.getTime()));
-
-        Date start3 = new Date();
-
-        checkSort(array);
-
-        Date end3 = new Date();
-
-        System.out.println("checkSort time:" + (end3.getTime() - start3.getTime()));
-
+        System.out.println(ClassUtils.getClassName(new Plan()));
 
     }
 }

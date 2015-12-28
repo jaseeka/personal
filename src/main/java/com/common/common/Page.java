@@ -1,4 +1,4 @@
-package com.personal.common;
+package com.common.common;
 
 import com.github.miemiedev.mybatis.paginator.domain.Order;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
@@ -24,23 +24,23 @@ public class Page {
     /**
      * 当前页号
      */
-    private Integer no = 1;
+    private Integer pageNo = 1;
     /**
      * 一页记录数
      */
-    private Integer size = Integer.MAX_VALUE;
+    private Integer pageSize = Integer.MAX_VALUE - 1;
     /**
      * 总记录数
      */
-    private Integer total = 0;
+    private Integer totalRows = 0;
     /**
      * 总页数
      */
-    private Integer totalPage = 0;
+    private Integer totalPages = 0;
     /**
      * 排序字段 为实体属性名
      */
-    private String sort;
+    private String sort = "id";
     /**
      * 排序类型ASC升/DESC降 （为空默认ASC）
      */
@@ -49,49 +49,49 @@ public class Page {
     public Page() {
     }
 
-    public Page(Integer no, Integer size) {
-        setNo(no);
-        setSize(size);
+    public Page(Integer pageNo, Integer pageSize) {
+        setPageNo(pageNo);
+        setPageSize(pageSize);
     }
 
-    public Page(Integer no, Integer size, String sort, String order) {
-        setNo(no);
-        setSize(size);
+    public Page(Integer pageNo, Integer pageSize, String sort, String order) {
+        setPageNo(pageNo);
+        setPageSize(pageSize);
         setSort(sort);
         setOrder(order);
     }
 
-    public void setNo(Integer no) {
-        this.no = no;
+    public void setPageNo(Integer pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public void setSize(Integer size) {
-        this.size = size;
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 
-    public void setTotal(Integer total) {
-        this.total = total;
-        this.totalPage = getTotalPage();
+    public void setTotalRows(Integer totalRows) {
+        this.totalRows = totalRows;
+        this.totalPages = getTotalPages();
     }
 
-    public void setTotalPage(Integer totalPage) {
-        this.totalPage = totalPage;
+    public void setTotalPages(Integer totalPages) {
+        this.totalPages = totalPages;
     }
 
-    public Integer getNo() {
-        return no;
+    public Integer getPageNo() {
+        return pageNo;
     }
 
-    public Integer getSize() {
-        return size;
+    public Integer getPageSize() {
+        return pageSize;
     }
 
-    public Integer getTotal() {
-        return total;
+    public Integer getTotalRows() {
+        return totalRows;
     }
 
-    public Integer getTotalPage() {
-        return total % size == 0 ? total / size : total / size + 1;
+    public Integer getTotalPages() {
+        return totalRows % pageSize == 0 ? totalRows / pageSize : totalRows / pageSize + 1;
     }
 
     public String getSort() {
@@ -126,15 +126,15 @@ public class Page {
     }
 
     public PageBounds gainPageBounds() {
-        if (this.no == null || this.no <= 0)
-            setNo(1);
-        if (this.size == null || this.size <= 0)
-            setSize(Integer.MAX_VALUE - 1);
+        if (this.pageNo == null || this.pageNo <= 0)
+            setPageNo(1);
+        if (this.pageSize == null || this.pageSize <= 0)
+            setPageSize(Integer.MAX_VALUE - 1);
 
         if (StringUtils.isEmpty(this.sort)) {
-            return new PageBounds(this.no, this.size);
+            return new PageBounds(this.pageNo, this.pageSize);
         } else {
-            return new PageBounds(this.no, this.size, Order.create(getSort(), getOrder()));
+            return new PageBounds(this.pageNo, this.pageSize, Order.create(getSort(), getOrder()));
         }
     }
 }

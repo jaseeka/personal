@@ -2,6 +2,8 @@ package com.personal.entity;
 
 import com.common.dao.BaseEntity;
 
+import java.util.Date;
+
 /**
  * Created by jaseeka
  * Date 2015/11/16
@@ -18,6 +20,8 @@ public class RegularDeposit extends BaseEntity{
     private Integer cycleNum;
 
     private Boolean isDeleted;
+
+    private Date time;
 
     public Integer getId() {
         return id;
@@ -57,5 +61,13 @@ public class RegularDeposit extends BaseEntity{
 
     public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 }

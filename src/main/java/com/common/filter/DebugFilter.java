@@ -36,7 +36,7 @@ public class DebugFilter implements Filter {
         }
         String url = request.getRequestURL().toString();
 
-        if (!url.endsWith(".css") && !url.endsWith(".js")) {
+        if (!url.endsWith(".css") && !url.endsWith(".js") && !url.endsWith(".jsp")) {
             // 输出测试信息
             logger.debug("================================================================");
             logger.debug("session        : " + sessionId);

@@ -76,7 +76,7 @@ function addItemDiv(data){
         var timeStr = time.Format("MM-dd");
 
         var item =  "<div class='item'>" +
-                        "<div class='text'>" + index+1 + ".  " + data[index].content + "</div>" +
+                        "<div class='text'>" + (index+1) + ".  " + data[index].content + "</div>" +
                         "<div class='time'>"+ timeStr +"</div>" +
                         "<div id="+ data[index].id +" class='btn'>" +
                             "<div class='doneBtn'>完成</div>" +
@@ -147,4 +147,6 @@ function addItemDiv(data){
 function addItem(){
     var editDiv = document.getElementById("editDiv");
     editDiv.style.display = "block";
+    $("#itemContent").val("");
+    $("input[name=time]").val("");
 }

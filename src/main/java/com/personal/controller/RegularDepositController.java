@@ -1,8 +1,9 @@
 package com.personal.controller;
 
+import com.common.common.Page;
+import com.common.controller.BaseController;
 import com.common.utils.JsonUtils;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.personal.common.Page;
 import com.personal.common.ResultCode;
 import com.personal.common.ResultEntity;
 import com.personal.entity.RegularDeposit;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpSession;
  */
 @RestController
 @RequestMapping("/")
-public class RegularDepositController {
+public class RegularDepositController extends BaseController {
     @Autowired
     private IRegularDepositService regularDepositService;
 
@@ -44,9 +45,9 @@ public class RegularDepositController {
     ){
         ResultEntity resultEntity = new ResultEntity();
 
-        Page page = new Page();
+        Page page = new Page(1,10, "id", Page.ORDER_DESC);
         model.setIsDeleted(false);
-        PageList<RegularDeposit> regularDepositList = regularDepositService.getList(model, page);
+        PageList<RegularDeposit> regularDepositList = regularDepositService.getListAnd(model, page);
 
         if (regularDepositList == null || regularDepositList.size() <= 0){
             resultEntity.setCode(ResultCode.NO_DATA);
@@ -90,7 +91,7 @@ public class RegularDepositController {
 
         Boolean result = false;
         if (id == null || id <= 0){
-            result = regularDepositService.insert(regularDeposit) > 0 ? true : false;
+            result = regularDepositService.add(regularDeposit) > 0 ? true : false;
         }else {
             result = regularDepositService.update(regularDeposit);
         }

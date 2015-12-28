@@ -1,9 +1,10 @@
 package com.personal.controller;
 
+import com.common.common.Page;
+import com.common.controller.BaseController;
 import com.common.utils.DateUtils;
 import com.common.utils.JsonUtils;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.personal.common.Page;
 import com.personal.common.ResultCode;
 import com.personal.common.ResultEntity;
 import com.personal.common.TypeEnum;
@@ -25,7 +26,7 @@ import javax.servlet.http.HttpSession;
  */
 @RestController
 @RequestMapping("/")
-public class ItemController {
+public class ItemController extends BaseController {
     private static final Logger logger = Logger.getLogger(ItemController.class);
 
     @Autowired
@@ -41,7 +42,7 @@ public class ItemController {
      */
     @RequestMapping(value = "getItemList", produces = "application/json;charset=UTF-8")
     public String getItemList(
-            @RequestParam(value = "state")Integer state,
+            @RequestParam(value = "state", required = false)Integer state,
             HttpSession session,
             HttpServletRequest request,
             HttpServletResponse response
@@ -54,7 +55,7 @@ public class ItemController {
 
         Page page = new Page(1, Integer.MAX_VALUE-1, "id", Page.ORDER_ASC);
 
-        PageList<Item> itemList = itemService.getList(item, page);
+        PageList<Item> itemList = itemService.getListAnd(item, page);
 
         if (itemList != null && itemList.size() > 0){
             resultEntity.getData().put("list", itemList);
@@ -188,7 +189,7 @@ public class ItemController {
         item.setState(TypeEnum.ItemState.NORMAL.ordinal());
         item.setIsDeleted(false);
 
-        Boolean result = itemService.insert(item) > 0 ? true : false;
+        Boolean result = itemService.add(item) > 0 ? true : false;
         if (result){
             resultEntity.setCode(ResultCode.SUCCESS);
             resultEntity.setMsg(ResultCode.MSUCCESS);

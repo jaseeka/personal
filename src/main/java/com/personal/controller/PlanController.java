@@ -1,16 +1,15 @@
 package com.personal.controller;
 
+import com.common.common.Page;
+import com.common.controller.BaseController;
 import com.common.utils.JsonUtils;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.personal.common.Page;
 import com.personal.common.ResultCode;
 import com.personal.common.ResultEntity;
-import com.personal.entity.Item;
 import com.personal.entity.Plan;
 import com.personal.service.IPlanService;
 import com.personal.service.IRegularDepositService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +25,7 @@ import javax.servlet.http.HttpSession;
  */
 @RestController
 @RequestMapping("/")
-public class PlanController {
+public class PlanController extends BaseController{
 
     @Autowired
     private IPlanService planService;
@@ -51,7 +50,7 @@ public class PlanController {
         ResultEntity resultEntity = new ResultEntity();
 
         Page page = new Page();
-        PageList<Plan> planList = planService.getList(model, page);
+        PageList<Plan> planList = planService.getListAnd(model, page);
 
         if (planList == null || planList.size() <= 0){
             resultEntity.setCode(ResultCode.NO_DATA);
@@ -93,7 +92,7 @@ public class PlanController {
 
         Boolean result = false;
         if (id == null || id <= 0){
-            result = planService.insert(plan) > 0 ? true : false;
+            result = planService.add(plan) > 0 ? true : false;
         }else {
             result = planService.update(plan);
         }

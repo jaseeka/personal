@@ -1,4 +1,5 @@
-package com.personal.common;
+package com.common.common;
+
 
 import com.common.common.Page;
 

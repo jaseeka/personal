@@ -1,10 +1,10 @@
 package com.common.utils;
 
-import com.common.annotation.NoColumn;
-
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 类反射用的工具类
@@ -373,6 +373,17 @@ public class ClassUtils {
 			field = obj.getClass().getDeclaredField(attributeName);
 			field.setAccessible(true);
 			field.set(obj, value);
+		}catch (NoSuchFieldException e) {
+			try {
+				// 获取父类field
+				field = obj.getClass().getSuperclass()
+						.getDeclaredField(attributeName);
+				// 开启私有属性访问权限
+				field.setAccessible(true);
+				value = field.get(obj);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -482,6 +493,20 @@ public class ClassUtils {
 	}
 
 	/**
+	 * 返回首字母小写写属性名
+	 *
+	 * @author jesse@gizhi.com
+	 * @date 2014年12月1日
+	 * @param name
+	 * @return
+	 */
+	public static String lowerCaseFirst(String name) {
+		String first = name.substring(0, 1);
+		first = first.toLowerCase();
+		return first + name.substring(1, name.length());
+	}
+
+	/**
 	 * 获取驼峰转成下划线属性名集合
 	 * @param obj
 	 * @return
@@ -521,6 +546,18 @@ public class ClassUtils {
 				newAttr.append(c);
 
 		return newAttr.toString();
+	}
+
+	/**
+	 * 获取首字母小写类名
+	 * @param clas
+	 * @return
+	 */
+	public static String lowerCaseFirstClassName(Class<?> clas){
+		String name = getClassName(clas);
+		String first = name.substring(0, 1);
+		first = first.toLowerCase();
+		return first + name.substring(1, name.length());
 	}
 
 }

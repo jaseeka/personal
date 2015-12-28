@@ -6,9 +6,6 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-    <!-- 数据库配置文件读取 -->
-    <context:property-placeholder
-            location="classpath:/property/dataSource.properties" ignore-unresolvable="true"/>
 
     <!-- c3p0连接池配置 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -40,6 +37,8 @@
                 <prop key="acquireRetryAttempts">30</prop>
                 <prop key="breakAfterAcquireFailure">true</prop>
                 <prop key="testConnectionOnCheckout">true</prop>
+                <prop key="testConnectionOnCheckin">false</prop>
+                <prop key="preferredTestQuery">SELECT 1</prop>
             </props>
         </property>
     </bean>

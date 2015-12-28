@@ -75,11 +75,12 @@ function addRegularDepositDiv(data){
     $(data).each(function(index){
 
         var time = new Date(data[index].time);
-        var timeStr = time.Format("hh:mm");
+        var timeStr = time.Format("MM-dd");
 
         var item =  "<div class='item'>" +
-            "<div class='text'>" + data[index].content + "</div>" +
-            "<div class='time'>"+ data[index].number +" </div>" +
+            "<div class='text' style='width: 35%'>" + data[index].content + "</div>" +
+            "<div class='number' >"+ data[index].number +" </div>" +
+            "<div class='time'>"+ timeStr +" </div>" +
             "<div id="+ data[index].id +" class='btn'>" +
             "<div class='editBtn' onclick='editRegularDeposit( "+ data[index].id + ", \"" + data[index].content + "\"," + data[index].number + "," + data[index].cycleNum + ")'>编辑</div>" +
             "<div class='deleteBtn'>删除</div>" +

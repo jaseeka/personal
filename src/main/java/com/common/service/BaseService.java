@@ -4,12 +4,14 @@ import com.common.ParamConstants;
 import com.common.common.Page;
 import com.common.dao.BaseDao;
 import com.common.dao.BaseEntity;
+import com.common.utils.BeanUtils;
 import com.common.utils.ClassUtils;
 import com.common.utils.SpringUtils;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 
 /**
@@ -35,6 +37,29 @@ public class BaseService<E> {
      * @return
      */
     public <E extends BaseEntity> E getById(Integer id){
+
+        if (id == null || id <= 0){
+            return null;
+        }
+        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
+        BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
+
+        // 通过反射创建实体
+        E entity = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+        // 设置id
+        ClassUtils.setAttributeValue(entity, ParamConstants.PRIMARY_KEY.toString(), id);
+
+        return BeanUtils.changeToBean(dao.selectById(entity),entity.getClass());
+    }
+
+    /**
+     * 根据id获取对象
+     * @param id
+     * @param <E>
+     * @return
+     */
+    public <E extends BaseEntity> Map<String, Object> getByIdMap(Integer id){
 
         if (id == null || id <= 0){
             return null;
@@ -147,6 +172,28 @@ public class BaseService<E> {
             page = new Page();
         }
 
+        return BeanUtils.changeToBeanList(dao.selectAnd(e, page.gainPageBounds()), e.getClass());
+    }
+
+    /**
+     * 查询 And
+     * @param e
+     * @param <E>
+     * @return
+     */
+    public <E extends BaseEntity> PageList<Map<String, Object>> getListAndMap(E e, Page page){
+
+        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
+        BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
+
+        if (e == null ){
+            e = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+        }
+        if (page == null){
+            page = new Page();
+        }
+
         return dao.selectAnd(e, page.gainPageBounds());
     }
 
@@ -158,6 +205,29 @@ public class BaseService<E> {
      * @return
      */
     public <E extends BaseEntity> PageList<E> getListAndLike(E e, Page page){
+
+        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
+        BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
+
+        if (e == null ){
+            e = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+        }
+        if (page == null){
+            page = new Page();
+        }
+
+        return BeanUtils.changeToBeanList(dao.selectAndLike(e, page.gainPageBounds()), e.getClass());
+    }
+
+    /**
+     * 模糊查询 And
+     * @param e
+     * @param page
+     * @param <E>
+     * @return
+     */
+    public <E extends BaseEntity> PageList<Map<String, Object>> getListAndLikeMap(E e, Page page){
 
         String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
@@ -193,6 +263,29 @@ public class BaseService<E> {
             page = new Page();
         }
 
+        return BeanUtils.changeToBeanList(dao.selectOr(e, page.gainPageBounds()), e.getClass());
+    }
+
+    /**
+     * 查询 Or
+     * @param e
+     * @param page
+     * @param <E>
+     * @return
+     */
+    public <E extends BaseEntity> PageList<Map<String, Object>> getListOrMap(E e, Page page){
+
+        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
+        BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
+
+        if (e == null ){
+            e = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+        }
+        if (page == null){
+            page = new Page();
+        }
+
         return dao.selectOr(e, page.gainPageBounds());
     }
 
@@ -204,6 +297,29 @@ public class BaseService<E> {
      * @return
      */
     public <E extends BaseEntity> PageList<E> getListOrLike(E e, Page page){
+
+        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
+        BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
+
+        if (e == null ){
+            e = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+        }
+        if (page == null){
+            page = new Page();
+        }
+
+        return BeanUtils.changeToBeanList(dao.selectOrLike(e, page.gainPageBounds()), e.getClass());
+    }
+
+    /**
+     * 模糊查询 Or
+     * @param e
+     * @param page
+     * @param <E>
+     * @return
+     */
+    public <E extends BaseEntity> PageList<Map<String, Object>> getListOrLikeMap(E e, Page page){
 
         String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";

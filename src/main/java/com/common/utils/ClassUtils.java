@@ -507,30 +507,6 @@ public class ClassUtils {
 	}
 
 	/**
-	 * 获取驼峰转成下划线属性名集合
-	 * @param obj
-	 * @return
-	 */
-//	public static Map<String, String> _getAttributesNameSet(Class<?> obj){
-//
-//		Map<String, String> newAttrs = new HashMap<String, String>();
-//
-//		for (String attrName : getAttributesName(obj))
-//			newAttrs.put(attrName, _changeAttr(attrName));
-//
-//		return newAttrs;
-//	}
-
-	/**
-	 * 获取驼峰转成下划线属性名
-	 * @param obj
-	 * @return
-	 */
-//	public static Map<String, String> _getAttributesNameSet(Objects obj){
-//		return _getAttributesNameSet(obj.getClass());
-//	}
-
-	/**
 	 * 属性名转换成下划线写法
 	 * @param attr
 	 * @return

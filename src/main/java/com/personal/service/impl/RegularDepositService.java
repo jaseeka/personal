@@ -31,7 +31,7 @@ public class RegularDepositService extends BaseService<RegularDeposit> implement
         if (obj == null){
             obj = new RegularDeposit();
         }
-        return regularDepositDao.selectAndLikeCount(obj);
+        return this.getAndLikeCount(obj);
     }
 
     /**

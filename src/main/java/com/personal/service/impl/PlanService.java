@@ -36,7 +36,7 @@ public class PlanService extends BaseService<Plan> implements IPlanService {
         if (obj == null){
             obj = new Plan();
         }
-        return planDao.selectAndLikeCount(obj);
+        return this.getAndLikeCount(obj);
     }
 
 

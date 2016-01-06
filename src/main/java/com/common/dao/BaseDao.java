@@ -33,7 +33,7 @@ public interface BaseDao<T extends BaseEntity> {
      * @return
      */
     @DeleteProvider(type = SQLTemplate.class, method = "deleteById")
-    public Integer deleteById(T object);
+    public Integer _deleteById(T object);
 
     /**
      * 通用多条件删除操作
@@ -41,7 +41,7 @@ public interface BaseDao<T extends BaseEntity> {
      * @return
      */
     @DeleteProvider(type = SQLTemplate.class, method = "deleteAnd")
-    public Integer deleteAnd(T object);
+    public Integer _deleteAnd(T object);
 
     /**
      * 通用添加操作
@@ -50,7 +50,7 @@ public interface BaseDao<T extends BaseEntity> {
      */
     @InsertProvider(type = SQLTemplate.class, method = "insert")
     @SelectKey(before = false, keyProperty = "id", resultType = int.class, statement = SELECT_INSERT_PRIMARY_KEY)
-    public Integer insert(T object);
+    public Integer _insert(T object);
 
     /**
      * 通用更新操作
@@ -58,7 +58,7 @@ public interface BaseDao<T extends BaseEntity> {
      * @return
      */
     @UpdateProvider(type = SQLTemplate.class, method = "update")
-    public Integer update(T object);
+    public Integer _update(T object);
 
     /**
      * 通用更新操作(包含空属性)
@@ -66,7 +66,7 @@ public interface BaseDao<T extends BaseEntity> {
      * @return
      */
     @UpdateProvider(type = SQLTemplate.class, method = "updateNull")
-    public Integer updateNull(T object);
+    public Integer _updateNull(T object);
 
     /**
      * 通用like多条件and查询操作获取总记录数
@@ -74,7 +74,7 @@ public interface BaseDao<T extends BaseEntity> {
      * @return
      */
     @SelectProvider(type = SQLTemplate.class, method = "selectAndLikeCount")
-    public Integer selectAndLikeCount(T object);
+    public Integer _selectAndLikeCount(T object);
 
     /**
      * 通用id查询操作
@@ -82,7 +82,7 @@ public interface BaseDao<T extends BaseEntity> {
      * @return
      */
     @SelectProvider(type = SQLTemplate.class, method = "selectById")
-    public Map<String, Object> selectById(T object);
+    public Map<String, Object> _selectById(T object);
 
     /**
      * 通用多条件or查询操作
@@ -91,7 +91,7 @@ public interface BaseDao<T extends BaseEntity> {
      * @return
      */
     @SelectProvider(type = SQLTemplate.class, method = "selectOr")
-    public PageList<Map<String, Object>> selectOr(T object, PageBounds page);
+    public PageList<Map<String, Object>> _selectOr(T object, PageBounds page);
 
     /**
      * 通用多条件and查询操作
@@ -100,7 +100,7 @@ public interface BaseDao<T extends BaseEntity> {
      * @return
      */
     @SelectProvider(type = SQLTemplate.class, method = "selectAnd")
-    public PageList<Map<String, Object>> selectAnd(T object, PageBounds page);
+    public PageList<Map<String, Object>> _selectAnd(T object, PageBounds page);
 
     /**
      * 通用like多条件or查询操作
@@ -109,7 +109,7 @@ public interface BaseDao<T extends BaseEntity> {
      * @return
      */
     @SelectProvider(type = SQLTemplate.class, method = "selectOrLike")
-    public PageList<Map<String, Object>> selectOrLike(T object, PageBounds page);
+    public PageList<Map<String, Object>> _selectOrLike(T object, PageBounds page);
 
     /**
      * 通用like多条件and查询操作
@@ -118,6 +118,6 @@ public interface BaseDao<T extends BaseEntity> {
      * @return
      */
     @SelectProvider(type = SQLTemplate.class, method = "selectAndLike")
-    public PageList<Map<String, Object>> selectAndLike(T object, PageBounds page);
+    public PageList<Map<String, Object>> _selectAndLike(T object, PageBounds page);
 
 }

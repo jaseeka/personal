@@ -43,6 +43,14 @@ public interface IBaseService {
     public <E extends BaseEntity> Integer add(E e);
 
     /**
+     * 获取总记录数
+     * @param e
+     * @param <E>
+     * @return
+     */
+    public <E extends BaseEntity> Integer getAndLikeCount(E e);
+
+    /**
      * 更新对象
      * @param e
      * @param <E>

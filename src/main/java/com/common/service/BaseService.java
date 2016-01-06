@@ -50,7 +50,7 @@ public class BaseService<E> {
         // 设置id
         ClassUtils.setAttributeValue(entity, ParamConstants.PRIMARY_KEY.toString(), id);
 
-        return BeanUtils.changeToBean(dao.selectById(entity),entity.getClass());
+        return BeanUtils.changeToBean(dao._selectById(entity),entity.getClass());
     }
 
     /**
@@ -73,7 +73,7 @@ public class BaseService<E> {
         // 设置id
         ClassUtils.setAttributeValue(entity, ParamConstants.PRIMARY_KEY.toString(), id);
 
-        return dao.selectById(entity);
+        return dao._selectById(entity);
     }
 
     /**
@@ -95,7 +95,7 @@ public class BaseService<E> {
         // 设置id
         ClassUtils.setAttributeValue(entity, ParamConstants.PRIMARY_KEY.toString(), id);
 
-        return dao.deleteById(entity) > 0 ? true :  false;
+        return dao._deleteById(entity) > 0 ? true :  false;
     }
 
     /**
@@ -114,7 +114,7 @@ public class BaseService<E> {
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
-        return dao.deleteAnd(e) > 0 ? true :  false;
+        return dao._deleteAnd(e) > 0 ? true :  false;
     }
 
     /**
@@ -131,9 +131,26 @@ public class BaseService<E> {
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
-        dao.insert(e);
+        dao._insert(e);
 
         return (Integer) ClassUtils.getAttributeValue(e, ParamConstants.PRIMARY_KEY.toString());
+    }
+
+    /**
+     * 获取总记录数
+     * @param e
+     * @param <E>
+     * @return
+     */
+    public <E extends BaseEntity> Integer getAndLikeCount(E e){
+        if (e == null){
+            return 0;
+        }
+        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
+        BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
+
+        return dao._selectAndLikeCount(e);
     }
 
     /**
@@ -150,7 +167,7 @@ public class BaseService<E> {
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
-        return dao.update(e) > 0 ? true :  false;
+        return dao._update(e) > 0 ? true :  false;
     }
 
     /**
@@ -172,7 +189,7 @@ public class BaseService<E> {
             page = new Page();
         }
 
-        return BeanUtils.changeToBeanList(dao.selectAnd(e, page.gainPageBounds()), e.getClass());
+        return BeanUtils.changeToBeanList(dao._selectAnd(e, page.gainPageBounds()), e.getClass());
     }
 
     /**
@@ -194,7 +211,7 @@ public class BaseService<E> {
             page = new Page();
         }
 
-        return dao.selectAnd(e, page.gainPageBounds());
+        return dao._selectAnd(e, page.gainPageBounds());
     }
 
     /**
@@ -217,7 +234,7 @@ public class BaseService<E> {
             page = new Page();
         }
 
-        return BeanUtils.changeToBeanList(dao.selectAndLike(e, page.gainPageBounds()), e.getClass());
+        return BeanUtils.changeToBeanList(dao._selectAndLike(e, page.gainPageBounds()), e.getClass());
     }
 
     /**
@@ -240,7 +257,7 @@ public class BaseService<E> {
             page = new Page();
         }
 
-        return dao.selectAndLike(e, page.gainPageBounds());
+        return dao._selectAndLike(e, page.gainPageBounds());
     }
 
     /**
@@ -263,7 +280,7 @@ public class BaseService<E> {
             page = new Page();
         }
 
-        return BeanUtils.changeToBeanList(dao.selectOr(e, page.gainPageBounds()), e.getClass());
+        return BeanUtils.changeToBeanList(dao._selectOr(e, page.gainPageBounds()), e.getClass());
     }
 
     /**
@@ -286,7 +303,7 @@ public class BaseService<E> {
             page = new Page();
         }
 
-        return dao.selectOr(e, page.gainPageBounds());
+        return dao._selectOr(e, page.gainPageBounds());
     }
 
     /**
@@ -309,7 +326,7 @@ public class BaseService<E> {
             page = new Page();
         }
 
-        return BeanUtils.changeToBeanList(dao.selectOrLike(e, page.gainPageBounds()), e.getClass());
+        return BeanUtils.changeToBeanList(dao._selectOrLike(e, page.gainPageBounds()), e.getClass());
     }
 
     /**
@@ -332,7 +349,7 @@ public class BaseService<E> {
             page = new Page();
         }
 
-        return dao.selectOrLike(e, page.gainPageBounds());
+        return dao._selectOrLike(e, page.gainPageBounds());
     }
 
     /**

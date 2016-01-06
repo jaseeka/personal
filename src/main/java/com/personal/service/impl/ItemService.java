@@ -28,7 +28,7 @@ public class ItemService extends BaseService<Item> implements IItemService {
         if (obj == null){
             obj = new Item();
         }
-        return itemDao.selectAndLikeCount(obj);
+        return this.getAndLikeCount(obj);
     }
 
     /**

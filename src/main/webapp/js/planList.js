@@ -19,7 +19,7 @@ function bindEvent(){
             data:{
                 id      : $("input[name=id]").val(),
                 content : $("#planContent").val(),
-                isCycle : $("input[name=isCycle]").val()
+                cycleNum : $("#cycleNum").val()
             },
             dataType:'json',//服务器返回json格式数据
             type:'post',//HTTP请求类型
@@ -78,10 +78,11 @@ function addPlanDiv(data){
         var timeStr = time.Format("hh:mm");
 
         var item =  "<div class='item'>" +
-                        "<div class='text'>" + data[index].content + "</div>" +
+                        "<div class='text' style='width: 45%'>" + data[index].content + "</div>" +
                         "<div class='time'>"+ timeStr +"</div>" +
+                        "<div class='cycleNum' style='float: left;width:8%; padding-top: 5px;'>("+ data[index].cycleNum +")</div>" +
                         "<div id="+ data[index].id +" class='btn'>" +
-                            "<div class='editBtn' onclick='editPlan( "+ data[index].id + ", \"" + data[index].content + "\"," + data[index].isCycle + ")'>编辑</div>" +
+                            "<div class='editBtn' onclick='editPlan( "+ data[index].id + ", \"" + data[index].content + "\"," + data[index].cycleNum + ")'>编辑</div>" +
                             "<div class='deleteBtn'>删除</div>" +
                         "</div>" +
                     "</div>"
@@ -141,18 +142,16 @@ function addPlanDiv(data){
  * 添加或修改计划
  * @param data
  */
-function editPlan(id, content, isCycle){
+function editPlan(id, content, cycleNum){
     var editDiv = document.getElementById("editDiv");
     editDiv.style.display = "block";
     $("#planContent").val("");
+    $("#cycleNum").val("");
     $("input[name=id]").val("");
     if(id){
         $("#planContent").val(content);
+        $("#cycleNum").val(cycleNum);
         $("input[name=id]").val(id);
-        if (isCycle == true) {
-            $("input[name=isCycle]:eq(0)").attr("checked", "checked");
-        } else {
-            $("input[name=isCycle]:eq(1)").attr("checked", "checked");
-        }
+
     }
 }

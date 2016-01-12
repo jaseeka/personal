@@ -15,6 +15,8 @@ public class Item extends BaseEntity{
 
     private Integer id;
 
+    private Integer userId;
+
     private String content;
 
     private Date time;
@@ -61,5 +63,13 @@ public class Item extends BaseEntity{
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

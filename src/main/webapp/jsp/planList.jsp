@@ -30,12 +30,11 @@
 <div id="editDiv" >
   <H2>计划编辑</H2>
   <div class="formDiv">
-    <span>说明:</span>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说&nbsp;&nbsp;&nbsp;&nbsp;明:</span>
     <input type="text" name="content" id="planContent" />
     <br/><br/>
-    <span>循环:</span>
-    <input type="radio" name="isCycle" value="true" />是
-    <input type="radio" name="isCycle" value="false" />否
+    <span>循环参数(天):</span>
+    <input type="text" name="cycleNum" id="cycleNum" />
     <br/><br/>
     <input type="text" name="id" style="display: none" />
     <input id="editSubmit" type="button" value="提交">

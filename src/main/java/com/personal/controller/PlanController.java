@@ -78,7 +78,7 @@ public class PlanController extends BaseController{
     public String savePlan(
             @RequestParam(value = "id", required = false)Integer id,
             @RequestParam(value = "content")String content,
-            @RequestParam(value = "isCycle")Boolean isCycle,
+            @RequestParam(value = "cycleNum")Integer cycleNum,
             HttpSession session,
             HttpServletRequest request,
             HttpServletResponse response
@@ -88,7 +88,7 @@ public class PlanController extends BaseController{
         Plan plan = new Plan();
         plan.setId(id);
         plan.setContent(content);
-        plan.setIsCycle(isCycle);
+        plan.setCycleNum(cycleNum);
 
         Boolean result = false;
         if (id == null || id <= 0){

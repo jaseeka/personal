@@ -5,7 +5,7 @@ import com.common.dao.BaseEntity;
 import java.util.Date;
 
 /**
- * ¼Æ»®
+ * ï¿½Æ»ï¿½
  * Created by jaseeka
  * Date 2015/8/16
  * Time 21:49
@@ -14,9 +14,11 @@ public class Plan extends BaseEntity {
 
     private Integer id;
 
+    private Integer userId;
+
     private String content;
 
-    private Boolean isCycle;
+    private Integer cycleNum;
 
     private Date time;
 
@@ -36,12 +38,12 @@ public class Plan extends BaseEntity {
         this.content = content;
     }
 
-    public Boolean getIsCycle() {
-        return isCycle;
+    public Integer getCycleNum() {
+        return cycleNum;
     }
 
-    public void setIsCycle(Boolean isCycle) {
-        this.isCycle = isCycle;
+    public void setCycleNum(Integer cycleNum) {
+        this.cycleNum = cycleNum;
     }
 
     public Date getTime() {
@@ -50,5 +52,13 @@ public class Plan extends BaseEntity {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

@@ -1,6 +1,7 @@
 package com.personal.service.impl;
 
 import com.common.service.BaseService;
+import com.common.utils.ClassUtils;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.personal.common.TypeEnum;
 import com.personal.dao.PlanDao;
@@ -11,6 +12,7 @@ import com.personal.service.IPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -50,8 +52,11 @@ public class PlanService extends BaseService<Plan> implements IPlanService {
         if (planPageList == null || planPageList.size() <= 0){
             return false;
         }
+        Calendar date = Calendar.getInstance();
+        Integer day = date.get(Calendar.DAY_OF_YEAR);
         for (Plan plan : planPageList){
-            if (plan.getIsCycle()){
+
+            if (day % plan.getCycleNum() == 0) {
                 Item item = new Item();
                 item.setIsDeleted(false);
                 item.setState(TypeEnum.ItemState.NORMAL.ordinal());

@@ -38,9 +38,10 @@ public class RegularDepositService extends BaseService<RegularDeposit> implement
      * 添加定存金额
      */
     @Override
-    public boolean addCycleNum(){
+    public boolean addCycleMoney(){
         RegularDeposit reqRegularDeposit = new RegularDeposit();
         reqRegularDeposit.setIsDeleted(false);
+        reqRegularDeposit.setUserId(1);
 
         Page page = new Page(1,2, "id", Page.ORDER_DESC);
 

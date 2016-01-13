@@ -21,5 +21,5 @@ public interface IRegularDepositService extends IBaseService {
     /**
      * 添加定存金额
      */
-    public boolean addCycleNum();
+    public boolean addCycleMoney();
 }

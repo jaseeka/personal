@@ -12,6 +12,7 @@ import com.personal.service.IPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -23,9 +24,9 @@ import java.util.Date;
 @Service
 public class PlanService extends BaseService<Plan> implements IPlanService {
 
-    @Autowired
+    @Resource
     private PlanDao planDao;
-    @Autowired
+    @Resource
     private IItemService itemService;
 
 
@@ -62,6 +63,7 @@ public class PlanService extends BaseService<Plan> implements IPlanService {
                 item.setState(TypeEnum.ItemState.NORMAL.ordinal());
                 item.setTime(new Date());
                 item.setContent(plan.getContent());
+                item.setUserId(plan.getUserId());
                 itemService.add(item);
             }
         }

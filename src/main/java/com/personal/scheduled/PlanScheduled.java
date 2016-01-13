@@ -2,7 +2,6 @@ package com.personal.scheduled;
 
 import com.personal.service.IPlanService;
 import com.personal.service.IRegularDepositService;
-import org.apache.log4j.helpers.AbsoluteTimeDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -29,7 +28,7 @@ public class PlanScheduled implements BaseScheduled {
     @Scheduled(cron = "0 0 1 ? * *") // 每天0点执行
     public void invoke() {
         planService.addCyclePlan();
-        regularDepositService.addCycleNum();
+        regularDepositService.addCycleMoney();
         System.out.println( new Date() + "   addCyclePlan");
     }
 }

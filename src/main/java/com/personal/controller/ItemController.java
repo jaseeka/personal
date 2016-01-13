@@ -9,6 +9,7 @@ import com.personal.common.ResultCode;
 import com.personal.common.ResultEntity;
 import com.personal.common.TypeEnum;
 import com.personal.entity.Item;
+import com.personal.entity.User;
 import com.personal.service.IItemService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ import javax.servlet.http.HttpSession;
  * Time 21:14
  */
 @RestController
-@RequestMapping("/")
+@RequestMapping("/user")
 public class ItemController extends BaseController {
     private static final Logger logger = Logger.getLogger(ItemController.class);
 
@@ -49,9 +50,12 @@ public class ItemController extends BaseController {
     ){
         ResultEntity resultEntity = new ResultEntity();
 
+        User user = getUser(session);
+
         Item item = new Item();
         item.setIsDeleted(false);
         item.setState(state);
+        item.setUserId(user.getId());
 
         Page page = new Page(1, Integer.MAX_VALUE-1, "id", Page.ORDER_ASC);
 
@@ -146,9 +150,12 @@ public class ItemController extends BaseController {
     ){
         ResultEntity resultEntity = new ResultEntity();
 
+        User user = getUser(session);
+
         Item item = new Item();
         item.setIsDeleted(false);
         item.setState(state);
+        item.setUserId(user.getId());
 
         Integer total = itemService.count(item);
 
@@ -183,11 +190,14 @@ public class ItemController extends BaseController {
     ){
         ResultEntity resultEntity = new ResultEntity();
 
+        User user = getUser(session);
+
         Item item = new Item();
         item.setContent(content);
         item.setTime(DateUtils.formateStr(time, "dd-MM-yyyy HH:mm"));
         item.setState(TypeEnum.ItemState.NORMAL.ordinal());
         item.setIsDeleted(false);
+        item.setUserId(user.getId());
 
         Boolean result = itemService.add(item) > 0 ? true : false;
         if (result){

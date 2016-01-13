@@ -15,7 +15,7 @@ function bindEvent(){
     });
 
     $("#editSubmit").click(function () {
-        $.ajax('../saveRegularDeposit',{
+        $.ajax('../user/saveRegularDeposit',{
             data:{
                 id          : $("input[name=id]").val(),
                 content     : $("#regularDepositContent").val(),
@@ -43,7 +43,7 @@ function bindEvent(){
 
 // 获取数据
 function getRegularDepositList(){
-    $.ajax('../getRegularDepositList',{
+    $.ajax('../user/getRegularDepositList',{
         data:{
         },
         dataType:'json',//服务器返回json格式数据
@@ -93,7 +93,7 @@ function addRegularDepositDiv(data){
         var parent = $(this).parent();
         var id = parent[0].getAttribute("id") ;
         // 请求数据
-        $.ajax('../deleteRegularDeposit',{
+        $.ajax('../user/deleteRegularDeposit',{
             data:{
                 id: id
             },

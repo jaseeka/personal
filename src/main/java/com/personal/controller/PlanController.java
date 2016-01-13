@@ -7,6 +7,7 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.personal.common.ResultCode;
 import com.personal.common.ResultEntity;
 import com.personal.entity.Plan;
+import com.personal.entity.User;
 import com.personal.service.IPlanService;
 import com.personal.service.IRegularDepositService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpSession;
  * Time 22:41
  */
 @RestController
-@RequestMapping("/")
+@RequestMapping("/user")
 public class PlanController extends BaseController{
 
     @Autowired
@@ -49,6 +50,9 @@ public class PlanController extends BaseController{
     ){
         ResultEntity resultEntity = new ResultEntity();
 
+        User user = getUser(session);
+        model.setUserId(user.getId());
+
         Page page = new Page();
         PageList<Plan> planList = planService.getListAnd(model, page);
 
@@ -68,7 +72,7 @@ public class PlanController extends BaseController{
      * 保存计划
      * @param id
      * @param content
-     * @param isCycle
+     * @param cycleNum
      * @param session
      * @param request
      * @param response
@@ -92,6 +96,8 @@ public class PlanController extends BaseController{
 
         Boolean result = false;
         if (id == null || id <= 0){
+            User user = getUser(session);
+            plan.setUserId(user.getId());
             result = planService.add(plan) > 0 ? true : false;
         }else {
             result = planService.update(plan);
@@ -110,8 +116,8 @@ public class PlanController extends BaseController{
 
 
     /**
-     * 保存计划
-     * @param id
+     * 删除计划
+     * @param planId
      * @param session
      * @param request
      * @param response
@@ -155,7 +161,7 @@ public class PlanController extends BaseController{
         ResultEntity resultEntity = new ResultEntity();
 
         Boolean result = planService.addCyclePlan();
-        regularDepositService.addCycleNum();
+        regularDepositService.addCycleMoney();
 
 
         if (result){

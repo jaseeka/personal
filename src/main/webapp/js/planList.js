@@ -15,7 +15,7 @@ function bindEvent(){
     });
 
     $("#editSubmit").click(function () {
-        $.ajax('../savePlan',{
+        $.ajax('../user/savePlan',{
             data:{
                 id      : $("input[name=id]").val(),
                 content : $("#planContent").val(),
@@ -42,7 +42,7 @@ function bindEvent(){
 
 // 获取数据
 function getPlanList(state){
-    $.ajax('../getPlanList',{
+    $.ajax('../user/getPlanList',{
         data:{
             state:state
         },
@@ -117,7 +117,7 @@ function addPlanDiv(data){
         var parent = $(this).parent();
         var id = parent[0].getAttribute("id") ;
         // 请求数据
-        $.ajax('../deletePlan',{
+        $.ajax('../user/deletePlan',{
             data:{
                 planId: id
             },

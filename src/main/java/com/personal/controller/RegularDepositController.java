@@ -7,6 +7,7 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.personal.common.ResultCode;
 import com.personal.common.ResultEntity;
 import com.personal.entity.RegularDeposit;
+import com.personal.entity.User;
 import com.personal.service.IRegularDepositService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpSession;
  * Time 9:54
  */
 @RestController
-@RequestMapping("/")
+@RequestMapping("/user")
 public class RegularDepositController extends BaseController {
     @Autowired
     private IRegularDepositService regularDepositService;
@@ -44,6 +45,9 @@ public class RegularDepositController extends BaseController {
             HttpServletResponse response
     ){
         ResultEntity resultEntity = new ResultEntity();
+
+        User user = getUser(session);
+        model.setUserId(user.getId());
 
         Page page = new Page(1,10, "id", Page.ORDER_DESC);
         model.setIsDeleted(false);
@@ -91,6 +95,8 @@ public class RegularDepositController extends BaseController {
 
         Boolean result = false;
         if (id == null || id <= 0){
+            User user = getUser(session);
+            regularDeposit.setUserId(user.getId());
             result = regularDepositService.add(regularDeposit) > 0 ? true : false;
         }else {
             result = regularDepositService.update(regularDeposit);

@@ -77,7 +77,7 @@ function addItemDiv(data){
 
         var item =  "<div class='item'>" +
                         "<div class='text'>" + (index+1) + ".  " + data[index].content + "</div>" +
-                        "<div class='time'>"+ timeStr +"</div>" +
+                        "<div class='time'>("+ timeStr +")</div>" +
                         "<div id="+ data[index].id +" class='btn'>" +
                             "<div class='doneBtn'>完成</div>" +
                             "<div class='abandonBtn'>放弃</div>" +

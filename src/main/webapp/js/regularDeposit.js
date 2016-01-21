@@ -78,7 +78,7 @@ function addRegularDepositDiv(data){
         var timeStr = time.Format("MM-dd");
 
         var item =  "<div class='item'>" +
-            "<div class='text' style='width: 35%'>" + data[index].content + "</div>" +
+            "<div class='text' style='width: 32%'>" + data[index].content + "</div>" +
             "<div class='number' >"+ data[index].number +" </div>" +
             "<div class='time'>"+ timeStr +" </div>" +
             "<div id="+ data[index].id +" class='btn'>" +

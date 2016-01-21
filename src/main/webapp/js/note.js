@@ -144,6 +144,6 @@ function addNoteDiv(data){
 function addNote(){
     var editDiv = document.getElementById("editDiv");
     editDiv.style.display = "block";
-    $("#itemContent").val("");
+    $("#noteContent").val("");
     $("input[name=time]").val("");
 }

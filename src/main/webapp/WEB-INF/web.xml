@@ -5,6 +5,10 @@
 
 	<display-name>Spring MVC Application</display-name>
 
+	<welcome-file-list>
+		<welcome-file>/login.jsp</welcome-file>
+	</welcome-file-list>
+
 	<!--引入基础配置-->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

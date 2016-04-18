@@ -22,9 +22,6 @@ import java.util.Map;
 @Component
 public class BaseService<E> {
 
-    @Resource
-    private ParamConstants paramConstants;
-
     /**
      * 类名
      */
@@ -41,12 +38,12 @@ public class BaseService<E> {
         if (id == null || id <= 0){
             return null;
         }
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
         // 通过反射创建实体
-        E entity = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+        E entity = (E) ClassUtils.createInstance(ParamConstants.ENTITY_PACKAGE + "." + entityName);
         // 设置id
         ClassUtils.setAttributeValue(entity, ParamConstants.PRIMARY_KEY.toString(), id);
 
@@ -64,12 +61,12 @@ public class BaseService<E> {
         if (id == null || id <= 0){
             return null;
         }
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
         // 通过反射创建实体
-        E entity = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+        E entity = (E) ClassUtils.createInstance(ParamConstants.ENTITY_PACKAGE + "." + entityName);
         // 设置id
         ClassUtils.setAttributeValue(entity, ParamConstants.PRIMARY_KEY.toString(), id);
 
@@ -86,12 +83,12 @@ public class BaseService<E> {
         if (id == null || id <= 0){
             return null;
         }
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
         // 通过反射创建实体
-        E entity = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+        E entity = (E) ClassUtils.createInstance(ParamConstants.ENTITY_PACKAGE + "." + entityName);
         // 设置id
         ClassUtils.setAttributeValue(entity, ParamConstants.PRIMARY_KEY.toString(), id);
 
@@ -110,7 +107,7 @@ public class BaseService<E> {
             return false;
         }
 
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
@@ -127,7 +124,7 @@ public class BaseService<E> {
         if (e == null){
             return 0;
         }
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
@@ -146,7 +143,7 @@ public class BaseService<E> {
         if (e == null){
             return 0;
         }
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
@@ -163,7 +160,7 @@ public class BaseService<E> {
         if (e == null || (Integer) ClassUtils.getAttributeValue(e, ParamConstants.PRIMARY_KEY.toString()) == null || (Integer) ClassUtils.getAttributeValue(e, ParamConstants.PRIMARY_KEY.toString()) <= 0){
             return false;
         }
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
@@ -178,12 +175,12 @@ public class BaseService<E> {
      */
     public <E extends BaseEntity> PageList<E> getListAnd(E e, Page page){
 
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
         if (e == null ){
-            e = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+            e = (E) ClassUtils.createInstance(ParamConstants.ENTITY_PACKAGE + "." + entityName);
         }
         if (page == null){
             page = new Page();
@@ -200,12 +197,12 @@ public class BaseService<E> {
      */
     public <E extends BaseEntity> PageList<Map<String, Object>> getListAndMap(E e, Page page){
 
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
         if (e == null ){
-            e = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+            e = (E) ClassUtils.createInstance(ParamConstants.ENTITY_PACKAGE + "." + entityName);
         }
         if (page == null){
             page = new Page();
@@ -223,12 +220,12 @@ public class BaseService<E> {
      */
     public <E extends BaseEntity> PageList<E> getListAndLike(E e, Page page){
 
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
         if (e == null ){
-            e = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+            e = (E) ClassUtils.createInstance(ParamConstants.ENTITY_PACKAGE + "." + entityName);
         }
         if (page == null){
             page = new Page();
@@ -246,12 +243,12 @@ public class BaseService<E> {
      */
     public <E extends BaseEntity> PageList<Map<String, Object>> getListAndLikeMap(E e, Page page){
 
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
         if (e == null ){
-            e = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+            e = (E) ClassUtils.createInstance(ParamConstants.ENTITY_PACKAGE + "." + entityName);
         }
         if (page == null){
             page = new Page();
@@ -269,12 +266,12 @@ public class BaseService<E> {
      */
     public <E extends BaseEntity> PageList<E> getListOr(E e, Page page){
 
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
         if (e == null ){
-            e = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+            e = (E) ClassUtils.createInstance(ParamConstants.ENTITY_PACKAGE + "." + entityName);
         }
         if (page == null){
             page = new Page();
@@ -292,12 +289,12 @@ public class BaseService<E> {
      */
     public <E extends BaseEntity> PageList<Map<String, Object>> getListOrMap(E e, Page page){
 
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
         if (e == null ){
-            e = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+            e = (E) ClassUtils.createInstance(ParamConstants.ENTITY_PACKAGE + "." + entityName);
         }
         if (page == null){
             page = new Page();
@@ -315,12 +312,12 @@ public class BaseService<E> {
      */
     public <E extends BaseEntity> PageList<E> getListOrLike(E e, Page page){
 
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
         if (e == null ){
-            e = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+            e = (E) ClassUtils.createInstance(ParamConstants.ENTITY_PACKAGE + "." + entityName);
         }
         if (page == null){
             page = new Page();
@@ -338,12 +335,12 @@ public class BaseService<E> {
      */
     public <E extends BaseEntity> PageList<Map<String, Object>> getListOrLikeMap(E e, Page page){
 
-        String entityName = replaceServicePrefix(serviceClassName, paramConstants.SERVICE_PREFIX);
+        String entityName = replaceServicePrefix(serviceClassName, ParamConstants.SERVICE_PREFIX);
         String daoName = ClassUtils.lowerCaseFirst(entityName) + "Dao";
         BaseDao<E> dao = (BaseDao<E>) SpringUtils.getBean(daoName);
 
         if (e == null ){
-            e = (E) ClassUtils.createInstance(paramConstants.ENTITY_PACKAGE + "." + entityName);
+            e = (E) ClassUtils.createInstance(ParamConstants.ENTITY_PACKAGE + "." + entityName);
         }
         if (page == null){
             page = new Page();

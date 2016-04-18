@@ -6,13 +6,10 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/personal/common/ResultCode.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/personal/common/ResultEntity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/personal/common/TypeEnum.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/personal/controller/EntityController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/personal/controller/ItemController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/personal/dao/EntityDao.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/personal/entity/Entity.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/personal/service/IEntityService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/personal/service/IItemService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/personal/service/impl/EntityService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/personal/service/impl/ItemService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/common/common.css" charset="UTF-8" />

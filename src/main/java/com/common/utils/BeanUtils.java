@@ -41,13 +41,15 @@ public class BeanUtils {
                     if ((attrType.equals(boolean.class) || attrType.equals(Boolean.class)) && (value.equals(1) || value.equals(0))){
                         value = value.equals(1) ? true : false;
                     }
-                    try {
-                        method.invoke(object, new Object[]{value});
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    }
+
+                    ClassUtils.setAttributeValue(object,attrName,value);
+//                    try {
+//                        method.invoke(object, new Object[]{value});
+//                    } catch (IllegalAccessException e) {
+//                        e.printStackTrace();
+//                    } catch (InvocationTargetException e) {
+//                        e.printStackTrace();
+//                    }
                 }
             }
         }

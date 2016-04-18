@@ -49,7 +49,7 @@ public class RegularDepositController extends BaseController {
         User user = getUser(session);
         model.setUserId(user.getId());
 
-        Page page = new Page(1,10, "id", Page.ORDER_DESC);
+        Page page = new Page(1,20, "id", Page.ORDER_DESC);
         model.setIsDeleted(false);
         PageList<RegularDeposit> regularDepositList = regularDepositService.getListAnd(model, page);
 

@@ -26,12 +26,12 @@
   </header>
   <div id="content">
     <ul class="mainmenu">
+      <li><a href="<%= path %>/jsp/dateItem.jsp" ><b class="iconfont">&#xe604;</b><span>每日清单</span></a></li>
       <li><a href="<%= path %>/jsp/toDoList.jsp" ><b class="iconfont">&#xe61a;</b><span>待办事项</span></a></li>
       <li><a href="<%= path %>/jsp/planList.jsp" ><b class="iconfont">&#xe624;</b><span>任务管理</span></a></li>
       <li><a href="<%= path %>/jsp/regularDepositList.jsp" ><b class="iconfont">&#xe613;</b><span>定存记录</span></a></li>
       <li><a href="<%= path %>/jsp/note.jsp" ><b class="iconfont">&#xe600;</b><span>备忘录</span></a></li>
 
-      <li><a href="" ><b class="iconfont">&#xe604;</b><span>(开发中)</span></a></li>
       <li><a href="" ><b class="iconfont">&#xe866;</b><span>待添加</span></a></li>
       <li><a href="" ><b class="iconfont"></b><span>待添加</span></a></li>
       <li><a href="" ><b class="iconfont"></b><span>待添加</span></a></li>

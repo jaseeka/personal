@@ -16,3 +16,8 @@ Date.prototype.Format = function (fmt) { //author: meizz
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
+
+// 时间比较的方法，如果d1时间比d2时间大，则返回true
+Date.prototype.compareDate = function (date) {
+    return Date.parse(this.toString().replace(/-/g, "/")) > Date.parse(date.toString().replace(/-/g, "/"))
+}

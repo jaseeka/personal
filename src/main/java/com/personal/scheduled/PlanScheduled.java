@@ -28,7 +28,6 @@ public class PlanScheduled implements BaseScheduled {
     @Scheduled(cron = "0 0 1 ? * *") // 每天0点执行
     public void invoke() {
         planService.addCyclePlan();
-        regularDepositService.addCycleMoney();
         System.out.println( new Date() + "   addCyclePlan");
     }
 }

@@ -57,7 +57,7 @@ public class PlanService extends BaseService<Plan> implements IPlanService {
         Integer day = date.get(Calendar.DAY_OF_YEAR);
         for (Plan plan : planPageList){
 
-            if (day % plan.getCycleNum() == 0) {
+            if ((day % plan.getCycleNum()) == 0) {
                 Item item = new Item();
                 item.setIsDeleted(false);
                 item.setState(TypeEnum.ItemState.NORMAL.ordinal());

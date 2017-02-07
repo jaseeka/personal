@@ -26,6 +26,7 @@ public class PlanScheduled implements BaseScheduled {
      */
     @Override
     @Scheduled(cron = "0 0 1 ? * *") // 每天0点执行
+//    @Scheduled(cron = "0 1 0 * * *") // 每天0点执行
     public void invoke() {
         planService.addCyclePlan();
         System.out.println( new Date() + "   addCyclePlan");

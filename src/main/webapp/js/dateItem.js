@@ -73,7 +73,7 @@ function addItemDiv(data){
     $(data).each(function(index){
 
         var time = new Date(data[index].time);
-        var timeStr = time.Format("dd hh:mm");
+        var timeStr = time.Format("MM-dd hh:mm");
 
         if (new Date().compareDate(time)){
             var item =  "<div class='item' style='background: hotpink;'>"
@@ -83,10 +83,10 @@ function addItemDiv(data){
 
          item = item +
             "<div class='text'>" + (index+1) + ".  " + data[index].content + "</div>" +
-            "<div class='time' >"+ timeStr +"</div>" +
-            "<div id="+ data[index].id +" class='btn'>" +
-            "<div class='doneBtn'>完成</div>" +
-            "<div class='abandonBtn'>放弃</div>" +
+            "<div class='time' style='width: 33%'>"+timeStr+"</div>" +
+            "<div id="+ data[index].id +" class='btn' style='width: 15%'>" +
+            "<div class='doneBtn' style='width: 100%'>完成</div>" +
+            // "<div class='abandonBtn'>放弃</div>" +
             "</div>" +
             "</div>"
         contentDiv.append(item);

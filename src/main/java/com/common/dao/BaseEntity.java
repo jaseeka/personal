@@ -36,9 +36,9 @@ public class BaseEntity implements Serializable {
      */
     public String gainTableName() {
         if (ParamConstants.DATABASE_TABLE_FORMAT == 1) {
-            return TABLE_PREFIX + ClassUtils.getClassName(this.getClass());
+            return TABLE_PREFIX + ClassUtils.getClassName(this.getClass()).toLowerCase();
         } else {
-            return TABLE_PREFIX + changeAttrToDatabase(ClassUtils.getClassName(this.getClass()));
+            return TABLE_PREFIX + changeAttrToDatabase(ClassUtils.getClassName(this.getClass()).toLowerCase());
         }
     }
 

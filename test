@@ -1,4 +1,4 @@
 git add test
 git commit test
 gti reset test
-git
+git push

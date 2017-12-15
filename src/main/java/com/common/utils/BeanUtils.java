@@ -2,8 +2,12 @@ package com.common.utils;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -78,5 +82,39 @@ public class BeanUtils {
         }
 
         return pageList;
+    }
+
+    /**
+     * 对象转成Map集合
+     * @param bean
+     * @return
+     */
+    public static Map convertBean(Object bean){
+        try{
+            Class type = bean.getClass();
+            Map returnMap = new HashMap();
+            BeanInfo beanInfo = Introspector.getBeanInfo(type);
+
+            PropertyDescriptor[] propertyDescriptors = beanInfo
+                    .getPropertyDescriptors();
+            for (int i = 0; i < propertyDescriptors.length; i++) {
+                PropertyDescriptor descriptor = propertyDescriptors[i];
+                String propertyName = descriptor.getName();
+                if (!propertyName.equals("class")) {
+                    Method readMethod = descriptor.getReadMethod();
+                    Object result = readMethod.invoke(bean, new Object[0]);
+                    if (result != null) {
+                        returnMap.put(propertyName, result);
+                    } else {
+                        returnMap.put(propertyName, "");
+                    }
+                }
+            }
+            return returnMap;
+        }catch (Exception e){
+            e.printStackTrace();
+            return new HashMap();
+        }
+
     }
 }

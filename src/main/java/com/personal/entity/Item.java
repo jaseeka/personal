@@ -2,6 +2,9 @@ package com.personal.entity;
 
 import com.common.annotation.NoColumn;
 import com.common.dao.BaseEntity;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
@@ -11,6 +14,7 @@ import java.util.Date;
  * Date 2015/8/16
  * Time 21:46
  */
+@Data
 public class Item extends BaseEntity{
 
     private Integer id;
@@ -24,52 +28,4 @@ public class Item extends BaseEntity{
     private Integer state;
 
     private Boolean isDeleted;
-
-    public Boolean getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
-    }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 }
